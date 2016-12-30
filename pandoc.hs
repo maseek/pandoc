@@ -1,4 +1,7 @@
-{-# LANGUAGE CPP, TupleSections, ScopedTypeVariables, PatternGuards #-}
+{-# LANGUAGE CPP                 #-}
+{-# LANGUAGE PatternGuards       #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE TupleSections       #-}
 {-
 Copyright (C) 2006-2016 John MacFarlane <jgm@berkeley.edu>
 
@@ -74,8 +77,8 @@ import Text.Pandoc.Readers.Txt2Tags (getT2TMeta)
 import Paths_pandoc (getDataDir)
 import Text.Printf (printf)
 #ifndef _WINDOWS
-import System.Posix.Terminal (queryTerminal)
-import System.Posix.IO (stdOutput)
+import           System.Posix.IO              (stdOutput)
+import           System.Posix.Terminal        (queryTerminal)
 #endif
 
 type Transform = Pandoc -> Pandoc
@@ -160,66 +163,66 @@ highlightingStyles =
 
 -- | Data structure for command line options.
 data Opt = Opt
-    { optTabStop           :: Int     -- ^ Number of spaces per tab
-    , optPreserveTabs      :: Bool    -- ^ Preserve tabs instead of converting to spaces
-    , optStandalone        :: Bool    -- ^ Include header, footer
-    , optReader            :: String  -- ^ Reader format
-    , optWriter            :: String  -- ^ Writer format
-    , optParseRaw          :: Bool    -- ^ Parse unconvertable HTML and TeX
-    , optTableOfContents   :: Bool    -- ^ Include table of contents
-    , optTransforms        :: [Transform]  -- ^ Doc transforms to apply
-    , optTemplate          :: Maybe FilePath  -- ^ Custom template
-    , optVariables         :: [(String,String)] -- ^ Template variables to set
-    , optMetadata          :: M.Map String MetaValue -- ^ Metadata fields to set
-    , optOutputFile        :: String  -- ^ Name of output file
-    , optNumberSections    :: Bool    -- ^ Number sections in LaTeX
-    , optNumberOffset      :: [Int]   -- ^ Starting number for sections
-    , optSectionDivs       :: Bool    -- ^ Put sections in div tags in HTML
-    , optIncremental       :: Bool    -- ^ Use incremental lists in Slidy/Slideous/S5
-    , optSelfContained     :: Bool    -- ^ Make HTML accessible offline
-    , optSmart             :: Bool    -- ^ Use smart typography
-    , optOldDashes         :: Bool    -- ^ Parse dashes like pandoc <=1.8.2.1
-    , optHtml5             :: Bool    -- ^ Produce HTML5 in HTML
-    , optHtmlQTags         :: Bool    -- ^ Use <q> tags in HTML
-    , optHighlight         :: Bool    -- ^ Highlight source code
-    , optHighlightStyle    :: Style   -- ^ Style to use for highlighted code
-    , optTopLevelDivision  :: TopLevelDivision -- ^ Type of the top-level divisions
-    , optHTMLMathMethod    :: HTMLMathMethod -- ^ Method to print HTML math
-    , optReferenceODT      :: Maybe FilePath -- ^ Path of reference.odt
-    , optReferenceDocx     :: Maybe FilePath -- ^ Path of reference.docx
-    , optEpubStylesheet    :: Maybe String   -- ^ EPUB stylesheet
-    , optEpubMetadata      :: String  -- ^ EPUB metadata
-    , optEpubFonts         :: [FilePath] -- ^ EPUB fonts to embed
-    , optEpubChapterLevel  :: Int     -- ^ Header level at which to split chapters
-    , optTOCDepth          :: Int     -- ^ Number of levels to include in TOC
-    , optDumpArgs          :: Bool    -- ^ Output command-line arguments
-    , optIgnoreArgs        :: Bool    -- ^ Ignore command-line arguments
-    , optVerbose           :: Bool    -- ^ Verbose diagnostic output
-    , optReferenceLinks    :: Bool    -- ^ Use reference links in writing markdown, rst
-    , optReferenceLocation :: ReferenceLocation -- ^ location for footnotes and link references in markdown output
-    , optDpi               :: Int     -- ^ Dpi
-    , optWrapText          :: WrapOption  -- ^ Options for wrapping text
-    , optColumns           :: Int     -- ^ Line length in characters
-    , optFilters           :: [FilePath] -- ^ Filters to apply
-    , optEmailObfuscation  :: ObfuscationMethod
-    , optIdentifierPrefix  :: String
-    , optIndentedCodeClasses :: [String] -- ^ Default classes for indented code blocks
-    , optDataDir           :: Maybe FilePath
-    , optCiteMethod        :: CiteMethod -- ^ Method to output cites
-    , optListings          :: Bool       -- ^ Use listings package for code blocks
-    , optLaTeXEngine       :: String     -- ^ Program to use for latex -> pdf
-    , optLaTeXEngineArgs   :: [String]   -- ^ Flags to pass to the latex-engine
-    , optSlideLevel        :: Maybe Int  -- ^ Header level that creates slides
-    , optSetextHeaders     :: Bool       -- ^ Use atx headers for markdown level 1-2
-    , optAscii             :: Bool       -- ^ Use ascii characters only in html
-    , optTeXLigatures      :: Bool       -- ^ Use TeX ligatures for quotes/dashes
+    { optTabStop               :: Int     -- ^ Number of spaces per tab
+    , optPreserveTabs          :: Bool    -- ^ Preserve tabs instead of converting to spaces
+    , optStandalone            :: Bool    -- ^ Include header, footer
+    , optReader                :: String  -- ^ Reader format
+    , optWriter                :: String  -- ^ Writer format
+    , optParseRaw              :: Bool    -- ^ Parse unconvertable HTML and TeX
+    , optTableOfContents       :: Bool    -- ^ Include table of contents
+    , optTransforms            :: [Transform]  -- ^ Doc transforms to apply
+    , optTemplate              :: Maybe FilePath  -- ^ Custom template
+    , optVariables             :: [(String,String)] -- ^ Template variables to set
+    , optMetadata              :: M.Map String MetaValue -- ^ Metadata fields to set
+    , optOutputFile            :: String  -- ^ Name of output file
+    , optNumberSections        :: Bool    -- ^ Number sections in LaTeX
+    , optNumberOffset          :: [Int]   -- ^ Starting number for sections
+    , optSectionDivs           :: Bool    -- ^ Put sections in div tags in HTML
+    , optIncremental           :: Bool    -- ^ Use incremental lists in Slidy/Slideous/S5
+    , optSelfContained         :: Bool    -- ^ Make HTML accessible offline
+    , optSmart                 :: Bool    -- ^ Use smart typography
+    , optOldDashes             :: Bool    -- ^ Parse dashes like pandoc <=1.8.2.1
+    , optHtml5                 :: Bool    -- ^ Produce HTML5 in HTML
+    , optHtmlQTags             :: Bool    -- ^ Use <q> tags in HTML
+    , optHighlight             :: Bool    -- ^ Highlight source code
+    , optHighlightStyle        :: Style   -- ^ Style to use for highlighted code
+    , optTopLevelDivision      :: TopLevelDivision -- ^ Type of the top-level divisions
+    , optHTMLMathMethod        :: HTMLMathMethod -- ^ Method to print HTML math
+    , optReferenceODT          :: Maybe FilePath -- ^ Path of reference.odt
+    , optReferenceDocx         :: Maybe FilePath -- ^ Path of reference.docx
+    , optEpubStylesheet        :: Maybe String   -- ^ EPUB stylesheet
+    , optEpubMetadata          :: String  -- ^ EPUB metadata
+    , optEpubFonts             :: [FilePath] -- ^ EPUB fonts to embed
+    , optEpubChapterLevel      :: Int     -- ^ Header level at which to split chapters
+    , optTOCDepth              :: Int     -- ^ Number of levels to include in TOC
+    , optDumpArgs              :: Bool    -- ^ Output command-line arguments
+    , optIgnoreArgs            :: Bool    -- ^ Ignore command-line arguments
+    , optVerbose               :: Bool    -- ^ Verbose diagnostic output
+    , optReferenceLinks        :: Bool    -- ^ Use reference links in writing markdown, rst
+    , optReferenceLocation     :: ReferenceLocation -- ^ location for footnotes and link references in markdown output
+    , optDpi                   :: Int     -- ^ Dpi
+    , optWrapText              :: WrapOption  -- ^ Options for wrapping text
+    , optColumns               :: Int     -- ^ Line length in characters
+    , optFilters               :: [FilePath] -- ^ Filters to apply
+    , optEmailObfuscation      :: ObfuscationMethod
+    , optIdentifierPrefix      :: String
+    , optIndentedCodeClasses   :: [String] -- ^ Default classes for indented code blocks
+    , optDataDir               :: Maybe FilePath
+    , optCiteMethod            :: CiteMethod -- ^ Method to output cites
+    , optListings              :: Bool       -- ^ Use listings package for code blocks
+    , optLaTeXEngine           :: String     -- ^ Program to use for latex -> pdf
+    , optLaTeXEngineArgs       :: [String]   -- ^ Flags to pass to the latex-engine
+    , optSlideLevel            :: Maybe Int  -- ^ Header level that creates slides
+    , optSetextHeaders         :: Bool       -- ^ Use atx headers for markdown level 1-2
+    , optAscii                 :: Bool       -- ^ Use ascii characters only in html
+    , optTeXLigatures          :: Bool       -- ^ Use TeX ligatures for quotes/dashes
     , optDefaultImageExtension :: String -- ^ Default image extension
-    , optExtractMedia      :: Maybe FilePath -- ^ Path to extract embedded media
-    , optTrace             :: Bool       -- ^ Print debug information
-    , optTrackChanges      :: TrackChanges -- ^ Accept or reject MS Word track-changes.
-    , optFileScope        :: Bool         -- ^ Parse input files before combining
-    , optKaTeXStylesheet   :: Maybe String     -- ^ Path to stylesheet for KaTeX
-    , optKaTeXJS           :: Maybe String     -- ^ Path to js file for KaTeX
+    , optExtractMedia          :: Maybe FilePath -- ^ Path to extract embedded media
+    , optTrace                 :: Bool       -- ^ Print debug information
+    , optTrackChanges          :: TrackChanges -- ^ Accept or reject MS Word track-changes.
+    , optFileScope             :: Bool         -- ^ Parse input files before combining
+    , optKaTeXStylesheet       :: Maybe String     -- ^ Path to stylesheet for KaTeX
+    , optKaTeXJS               :: Maybe String     -- ^ Path to js file for KaTeX
     }
 
 -- | Defaults for command-line options.
@@ -1080,6 +1083,7 @@ defaultWriterName x =
     ".icml"     -> "icml"
     ".tei.xml"  -> "tei"
     ".tei"      -> "tei"
+    ".elm"      -> "elm"
     ['.',y] | y `elem` ['1'..'9'] -> "man"
     _           -> "html"
 
